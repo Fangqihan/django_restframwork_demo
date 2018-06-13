@@ -21,14 +21,12 @@ class CustomAuthentication(BaseAuthentication):
         # 1. 针对get方式请求#################
         # 1.1 一般会携带token值，否则返回login视为匿名用户
         if request._request.method=='GET':
-            if not request.query_params.get('token'):
-                return (None, None)
+            if not request.query_params.get('token'): return (None, None)
             # 1.2 携带错误tk值也视为匿名用户
             token = Token.objects.filter(value= request.query_params.get('token'))
-            if token:
-                user = token.first().user
-                return (user, token)
-            return (None, None)
+            if not token: return (None, None)
+            user = token.first().user
+            return (user, token)
 
         # 2. 针对post请求#################
         username = request.data.get('username')
