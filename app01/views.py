@@ -77,6 +77,7 @@ class PasswordValidator(object):
     #     pass
 
 
+############# 手动自定义Serialize类进行验证， 推荐手动写
 class UserSerialize(serializers.Serializer):
     """先建立序列化类"""
     username = serializers.CharField(error_messages={'required': '用户名不能为空'})
@@ -86,6 +87,20 @@ class UserSerialize(serializers.Serializer):
     email = serializers.EmailField(error_messages={'required': '邮箱不能为空'})
     user_group = serializers.CharField(source='user_group.title')  # 若存在外键时候，必须指定source参数，否则取出来的是对象
     type = serializers.IntegerField()
+
+
+############# 不推荐，基于model自动生成字段并进行序列化验证
+# class UserSerialize(serializers.ModelSerializer):
+#     """先建立序列化类"""
+#     # 可以手动复写或增加字段
+#     user_group = serializers.CharField(source='user_group.title')  # 若存在外键时候，必须指定source参数，否则取出来的是对象
+#     class Meta:
+#         model = models.UserInfo
+#         fields = "__all__"
+#         extra_kwargs = {
+#             'username': {'min_length':4},
+#             'password': {'validators': [PasswordValidator(),]}
+#         }
 
 
 class SerializeView(APIView):
@@ -107,3 +122,35 @@ class SerializeView(APIView):
             return Response(ser.validated_data)
         else:
             return Response(ser.errors)
+
+
+
+##### 在后端利用urls的name属性反向生成url，可以传入参数（位置参数和字符串参数都可以）
+##### 在前端也可以利用url的name属性
+
+from django.shortcuts import redirect
+from django.urls import reverse
+
+def test1(request):
+    # u1 = reverse(viewname='test2',args=(11,22))
+    # u1 = reverse(viewname='test2',args=(11,22))
+    # print(u1)
+    u2 = reverse(viewname='test3',kwargs={'k1':111, 'k2':222})
+    print(u2)
+    return redirect(u2)
+
+    return HttpResponse('<h1>test1</h1>')
+
+
+def test2(request, *args):
+    print(args)  # ('11', '22')
+    return HttpResponse('<h1>test2</h1>')
+
+
+def test3(request, **kwargs):
+    print(kwargs)
+    return HttpResponse('<h1>test3</h1>')
+
+
+def index(request):
+    return render(request, 'index.html')

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    {#  在模板中利用url的name属性反向生成url， 可以传入关键字参数和位置参数  #}
+    <li><a href="{% url 'test1' %}">test1</a></li>
+    <li><a href="{% url 'test2' 88 99 %}">test2</a></li>
+    <li><a href="{% url 'test3' k1=888 k2=999 %}">test3</a></li>
+</ul>
+
+
+</body>
+</html>
