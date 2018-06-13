@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9d369296-24a1-41a3-8a1e-04befca28112" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app01/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app01/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/drf作业/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/drf作业/urls.py" afterDir="false" />
@@ -51,23 +52,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/drf作业/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-              <folding>
-                <element signature="e#639#671#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="163">
+              <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app01/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="239" lean-forward="true" selection-start-line="239" selection-end-line="239" />
+            <state relative-caret-position="445">
+              <caret line="332" column="18" selection-start-line="332" selection-start-column="18" selection-end-line="332" selection-end-column="18" />
               <folding>
                 <element signature="e#0#49#0" expanded="true" />
                 <element signature="e#259#540#0" />
@@ -79,10 +77,13 @@
                 <element signature="e#4088#4160#0" />
                 <element signature="e#4201#4256#0" />
                 <element signature="e#4408#4423#0" />
-                <element signature="e#4860#4930#0" />
                 <element signature="e#6115#6297#0" />
                 <element signature="e#6354#6424#0" />
                 <element signature="e#6459#6928#0" />
+                <element signature="e#7158#7382#0" />
+                <element signature="e#7441#7511#0" />
+                <element signature="e#8066#8136#0" />
+                <element signature="e#8044#8307#0" />
               </folding>
             </state>
           </provider>
@@ -143,6 +144,11 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>UserViewSet2</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -157,8 +163,8 @@
         <option value="$PROJECT_DIR$/app01/utils/my_auth.py" />
         <option value="$PROJECT_DIR$/app01/models.py" />
         <option value="$PROJECT_DIR$/templates/index.html" />
-        <option value="$PROJECT_DIR$/drf作业/urls.py" />
         <option value="$PROJECT_DIR$/app01/views.py" />
+        <option value="$PROJECT_DIR$/drf作业/urls.py" />
       </list>
     </option>
   </component>
@@ -227,7 +233,7 @@
     <property name="database.console.LAST_STATE" value="false" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Python" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -323,10 +329,10 @@
       <window_info anchor="bottom" id="TODO" order="13" weight="0.3292683" />
       <window_info anchor="bottom" id="Event Log" order="0" side_tool="true" weight="0.3283582" />
       <window_info anchor="bottom" id="Database Changes" order="1" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="10" weight="0.23880596" />
+      <window_info anchor="bottom" id="Run" order="10" weight="0.56173676" />
       <window_info anchor="bottom" id="Version Control" order="2" />
       <window_info anchor="bottom" id="Python Console" order="3" weight="0.3292683" />
-      <window_info anchor="bottom" id="Terminal" order="4" weight="0.5848033" />
+      <window_info anchor="bottom" id="Terminal" order="4" weight="0.42469472" />
       <window_info anchor="bottom" id="manage.py@drf作业" order="5" weight="0.3283582" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14203085" />
       <window_info anchor="bottom" id="Docker" order="6" show_stripe_button="false" />
@@ -554,16 +560,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/drf作业/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-          <folding>
-            <element signature="e#639#671#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/python_projects/learningOnline/env/Lib/site-packages/rest_framework/pagination.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-6535">
@@ -571,10 +567,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://H:/BaiduNetdiskDownload/路飞/restframwork/day124/s5day122rest/s5day122rest/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="70" column="10" lean-forward="true" selection-start-line="70" selection-start-column="10" selection-end-line="70" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/python_projects/learningOnline/env/Lib/site-packages/rest_framework/viewsets.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="67" selection-start-line="67" selection-end-line="67" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app01/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="239" lean-forward="true" selection-start-line="239" selection-end-line="239" />
+        <state relative-caret-position="445">
+          <caret line="332" column="18" selection-start-line="332" selection-start-column="18" selection-end-line="332" selection-end-column="18" />
           <folding>
             <element signature="e#0#49#0" expanded="true" />
             <element signature="e#259#540#0" />
@@ -586,11 +596,21 @@
             <element signature="e#4088#4160#0" />
             <element signature="e#4201#4256#0" />
             <element signature="e#4408#4423#0" />
-            <element signature="e#4860#4930#0" />
             <element signature="e#6115#6297#0" />
             <element signature="e#6354#6424#0" />
             <element signature="e#6459#6928#0" />
+            <element signature="e#7158#7382#0" />
+            <element signature="e#7441#7511#0" />
+            <element signature="e#8066#8136#0" />
+            <element signature="e#8044#8307#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/drf作业/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
         </state>
       </provider>
     </entry>

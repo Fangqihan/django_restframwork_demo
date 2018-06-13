@@ -279,3 +279,59 @@ class UserViewSet3(APIView):
 
 
 
+########## 手动 路由系统实现增删改查
+
+class OperateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.UserInfo
+        fields = "__all__"
+
+class OperateView(APIView):
+
+    def get(self, request, *args, **kwargs):
+        pk = kwargs.get('pk')
+        print(kwargs)  # {'format': 'json'}| {'pk': '1', 'format': 'json'}
+        if pk:
+            # 查询某一个数据
+            user_obj = UserInfo.objects.filter(id=pk).first()
+            serializer = UserSerializer(instance=user_obj, many=False)
+        else:
+            # 查询所有数据
+            user_list = models.UserInfo.objects.all()[:4]
+            serializer = UserSerializer(instance=user_list, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, *args, **kwargs):
+        user_list = models.UserInfo.objects.all()
+        return HttpResponse('post收到')
+
+
+
+########## 半自动 路由系统实现增删改查
+from rest_framework.viewsets import ModelViewSet
+from rest_framework import serializers
+
+class UserSerializer1(serializers.ModelSerializer):
+    class Meta:
+        model = models.UserInfo
+        fields = "__all__"
+
+class UserViewSet1(ModelViewSet):
+    queryset = models.UserInfo.objects.all()
+    serializer_class = UserSerializer1
+
+
+
+########## 全自动 路由系统实现增删改查
+from rest_framework.viewsets import ModelViewSet
+class UserSerializer2(serializers.ModelSerializer):
+    class Meta:
+        model = models.UserInfo
+        fields = "__all__"
+
+
+class UserViewSet2(ModelViewSet):
+    queryset = models.UserInfo.objects.all()
+    serializer_class = UserSerializer2
+
+
