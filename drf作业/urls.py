@@ -14,7 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from app01.views import LoginView, IndexView, OrderView, ParserView, SerializeView,test1, test2, test3,index
+from app01.views import LoginView, IndexView, OrderView, ParserView, \
+    SerializeView, test1, test2, test3, index, PageView, create, UserViewSet, UserViewSet3
 
 
 urlpatterns = [
@@ -26,11 +27,16 @@ urlpatterns = [
     url(r'^ser/', SerializeView.as_view()),
 
     # django反向生成url
-
     url(r'^test1/', test1, name='test1'),
-    url(r'^index/', index),
+    url(r'^home/', index),
     url(r'^test2/(\d+)/(\d+)', test2, name='test2'),
     url(r'^test3/(?P<k1>\d+)/(?P<k2>\d+)', test3, name='test3'),
 
+    # 分页数据生成
+    url(r'^page_num/', PageView.as_view()),
+    url(r'^page_limit/', UserViewSet.as_view()),
+    url(r'^page_cursor/', UserViewSet3.as_view()),
 
+    # 批量创建用户，准备数据
+    url(r'^create/', create),
 ]

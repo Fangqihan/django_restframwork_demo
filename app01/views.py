@@ -5,6 +5,15 @@ from app01.utils.my_auth import Auth
 from app01.utils.my_throttles import Throttle
 from app01.utils.my_permission import Permission
 
+def create(request):
+    user_list = []
+    for i in range(100):
+        user_list.append(UserInfo(username='alex%s'%i,password='abc%s'%i,email='abc%s@qq.com'%i,))
+    UserInfo.objects.bulk_create(user_list)
+
+    return HttpResponse('done！')
+
+
 
 class LoginView(Auth, APIView):
     """
@@ -141,16 +150,132 @@ def test1(request):
 
     return HttpResponse('<h1>test1</h1>')
 
-
 def test2(request, *args):
     print(args)  # ('11', '22')
     return HttpResponse('<h1>test2</h1>')
-
 
 def test3(request, **kwargs):
     print(kwargs)
     return HttpResponse('<h1>test3</h1>')
 
-
 def index(request):
     return render(request, 'index.html')
+
+
+
+
+#########################  分页  #################################
+
+from app01.models import UserInfo
+from rest_framework.pagination import PageNumberPagination
+
+
+#####  方法1，记录当前访问的页数数据， /?page=1&page_size=n
+class StandardResultsSetPagination(PageNumberPagination):
+        # 默认每页显示的数据条数
+    page_size = 10
+        # 获取URL参数中设置的每页显示数据条数
+    page_size_query_param = 'page_size'
+        # 获取URL参数中传入的页码key
+    page_query_param = 'page'
+        # 最大支持的每页显示的数据条数
+    max_page_size = 10
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.UserInfo
+        fields = "__all__"
+
+
+class PageView(APIView):
+    def get(self, request, *args, **kwargs):
+        user_list = UserInfo.objects.all().order_by('id')
+        paginator = StandardResultsSetPagination()  # 实例化对象
+        page_user_list = paginator.paginate_queryset(user_list, self.request, view=self)
+        # 序列化对象
+        serializer = UserSerializer(page_user_list, many=True)
+        # 生成分页和数据
+        response = paginator.get_paginated_response(serializer.data)
+        return response
+
+
+#####  方法2，根据offset和limit进行份分页 /?limit=10 & offset=40
+from rest_framework.views import APIView
+from rest_framework import serializers
+from rest_framework.pagination import PageNumberPagination,LimitOffsetPagination
+
+class StandardResultsSetPagination(LimitOffsetPagination):
+    # 默认每页显示的数据条数
+    default_limit = 10
+    # URL中传入的显示数据条数的参数
+    limit_query_param = 'limit'
+    # URL中传入的数据位置的参数
+    offset_query_param = 'offset'
+    # 最大每页显得条数
+    max_limit = None
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.UserInfo
+        fields = "__all__"
+
+class UserViewSet(APIView):
+    def get(self, request, *args, **kwargs):
+        user_list = models.UserInfo.objects.all().order_by('id')
+
+        # 实例化分页对象，获取数据库中的分页数据
+        paginator = StandardResultsSetPagination()
+        page_user_list = paginator.paginate_queryset(user_list, self.request, view=self)
+
+        # 序列化对象
+        serializer = UserSerializer(page_user_list, many=True)
+
+        # 生成分页和数据
+        response = paginator.get_paginated_response(serializer.data)
+        return response
+
+
+#####  方法3: 无法跳转至某一页，当数据量很大时候，采用此方式分页会较快，因为不存在逐个遍历， /?cursor=cD0xNg%3D%3D
+
+from rest_framework.views import APIView
+from rest_framework import serializers
+
+from rest_framework.pagination import CursorPagination
+
+class StandardResultsSetPagination(CursorPagination):
+    # URL传入的游标参数
+    cursor_query_param = 'cursor'
+    # 默认每页显示的数据条数
+    page_size = 4
+    # URL传入的每页显示条数的参数
+    page_size_query_param = 'page_size'
+    # 每页显示数据最大条数
+    max_page_size = 4
+    # 根据ID从大到小排列
+    ordering = "id"
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.UserInfo
+        fields = "__all__"
+
+
+class UserViewSet3(APIView):
+    def get(self, request, *args, **kwargs):
+        user_list = models.UserInfo.objects.all().order_by('id')
+
+        # 实例化分页对象，获取数据库中的分页数据
+        paginator = StandardResultsSetPagination()
+        page_user_list = paginator.paginate_queryset(user_list, self.request, view=self)
+
+        # 序列化对象
+        serializer = UserSerializer(page_user_list, many=True)
+
+        # 生成分页和数据
+        response = paginator.get_paginated_response(serializer.data)
+        return response
+
+
+
