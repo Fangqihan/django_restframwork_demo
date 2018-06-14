@@ -1,18 +1,3 @@
-"""drf作业 URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.11/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.conf.urls import url, include
-    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
-"""
 from django.conf.urls import url, include
 from app01.views import LoginView, OrderView, ParserView, \
     SerializeView, test1, test2, test3, index, PageView, create, UserViewSet, UserViewSet3, OperateView,UserViewSet1
@@ -68,3 +53,28 @@ router.register(r'op3',UserViewSet2)
 urlpatterns += [
     url(r'^', include(router.urls)),
 ]
+
+
+
+################## 渲染相关， 根据 用户请求URL 或 用户可接受的类型，筛选出合适的 渲染组件。
+
+from django.conf.urls import url
+from app01.views import TestView
+
+urlpatterns += [
+    url(r'^test/$', TestView.as_view()),
+    url(r'^test\.(?P<format>[a-z0-9]+)', TestView.as_view()),
+]
+
+
+
+
+
+
+
+
+
+
+
+
+

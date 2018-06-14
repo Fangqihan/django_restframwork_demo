@@ -335,3 +335,23 @@ class UserViewSet2(ModelViewSet):
     serializer_class = UserSerializer2
 
 
+########## 渲染视图
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import serializers
+from rest_framework.renderers import JSONRenderer, AdminRenderer, HTMLFormRenderer
+
+
+class TestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.UserInfo
+        fields = "__all__"
+
+
+class TestView(APIView):
+    renderer_classes = [JSONRenderer, AdminRenderer]
+
+    def get(self, request, *args, **kwargs):
+        user_list = models.UserInfo.objects.all()[:10]
+        ser = TestSerializer(instance=user_list, many=True)
+        return Response(ser.data)
